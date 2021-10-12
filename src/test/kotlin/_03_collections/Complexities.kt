@@ -1,11 +1,12 @@
 package _03_collections
 
+import java.util.stream.Stream
 import kotlin.test.Test
 
 class Complexities {
 
     @Test
-    fun `iteration that has O(n)`() {
+    fun `iteration that has O(1) complexity`() {
         val arrayList = (0..10_000_000).toList()
 
         /*

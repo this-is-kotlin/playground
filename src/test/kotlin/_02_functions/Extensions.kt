@@ -20,8 +20,6 @@ class Extensions {
 
     @Test
     fun `palindrome strings`() {
-        fun String.isPalindrome() = this == this.reversed()
-
         println("radar".isPalindrome())
     }
 }

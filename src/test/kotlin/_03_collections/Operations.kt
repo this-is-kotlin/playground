@@ -1,7 +1,10 @@
 package _03_collections
 
 import org.junit.jupiter.api.BeforeEach
+import java.util.*
+import java.util.stream.Stream
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertSame
 
 class Operations {
@@ -88,11 +91,31 @@ class Operations {
         println(sortedInterests)
     }
 
+    public inline fun <T> Iterable<T>.fold(operation: (acc: T, T) -> T): T? {
+        val iterator = this.iterator()
+        return if (iterator.hasNext()) {
+            var accumulator = iterator.next()
+            for (element in iterator) accumulator = operation(accumulator, element)
+            accumulator
+        } else null
+    }
+
     @Test
     fun `combine using fold`() {
         val charCount = interests.fold(0) { sum, s -> sum + s.length }
 
-        println(charCount)
+
+//        fun <T> List<T>.fold(f: (T, T) -> T): T? =
+//            if (this.isEmpty()) null
+//            else this.subList(1, this.size).fold(this[0], f)
+
+
+        val sumNullable: Int? = listOf(1, 2, 3, 4).fold { sum, s -> sum + s }
+        val sumNullable2: Int? = emptyList<Int>().fold { sum, s -> sum + s }
+
+        println(sumNullable)
+        println(sumNullable2)
+
     }
 
     @Test
@@ -100,6 +123,22 @@ class Operations {
         val charCount = interests.sumOf { it.length }
 
         println(charCount)
+    }
+
+    @Test
+    fun `fold using java streams`() {
+//        val s = Stream.of("1", "2", "3", "4")
+//            .reduce(0) { sum, v -> sum + v.length }
+
+//        println(s)
+//        assertEquals(10, s)
+
+        //without initial returns an Optional
+        val o = emptyList<Int>().stream()
+            .reduce { sum, v -> sum + v }
+
+        println(o)
+        assertSame(Optional.empty(), o)
     }
 
     @Test
