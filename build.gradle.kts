@@ -32,10 +32,12 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1")
 
-    testImplementation("io.kotest:kotest-runner-junit5:4.6.0")
+    testImplementation("io.kotest:kotest-runner-junit5:5.0.0.M3")
+    testImplementation("io.kotest:kotest-property-jvm:5.0.0.M3")
+    testImplementation("io.kotest:kotest-framework-datatest:5.0.0.M3")
     testImplementation(kotlin("test"))
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.1")
-
+    testImplementation("io.mockk:mockk:1.12.0")
 }
 
 tasks.test {
