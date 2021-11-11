@@ -1,10 +1,35 @@
+@file:OptIn(ExperimentalKotest::class)
+
 package _07_testing
 
 import _02_functions.isPalindrome
+import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.datatest.withData
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
+
+class PalindromeOrigSpec : FreeSpec({
+
+    "radar should be palindrome" {
+        "radar" should bePalindrome()
+    }
+    "level should be palindrome" {
+        "radar" should bePalindrome()
+    }
+    "lol should be palindrome" {
+        "radar" should bePalindrome()
+    }
+})
+
+class PalindromeDynamicSingleSpec : FreeSpec({
+
+    "radar".let {
+        "$it should be palindrome" {
+            it should bePalindrome()
+        }
+    }
+})
 
 class PalindromeDynamicSpec : FreeSpec({
 

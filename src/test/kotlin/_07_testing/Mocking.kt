@@ -3,6 +3,9 @@ package _07_testing
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.*
+import kotlinx.coroutines.*
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.random.Random
 
 interface Logger {
     fun error(f: () -> String)
